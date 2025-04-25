@@ -6,6 +6,11 @@ node_modules/
 # Expo
 .expo/
 dist/
+src.7z
+src2.7z
+src.tar.gz
+src.tar.xz
+src.zip
 web-build/
 expo-env.d.ts
 

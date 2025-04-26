@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
+import { Ionicons } from '@expo/vector-icons';
 import { fetchProductById } from '../api/api';
 import { RootStackParamList } from '../../App';
 import { useCart } from '../hooks/useCart';
@@ -95,7 +95,7 @@ const ProductDetailScreen = () => {
                 onPress={prevImage}
                 disabled={currentImageIndex === 0}
               >
-                <Text style={styles.navButtonText}><ArrowLeft/></Text>
+                <Text style={styles.navButtonText}><ArrowLeft  size={24} color="black" /></Text>
               </TouchableOpacity>
               
               <Text style={styles.imageCounter}>
@@ -107,7 +107,7 @@ const ProductDetailScreen = () => {
                 onPress={nextImage}
                 disabled={currentImageIndex === product.images.length - 1}
               >
-                <Text style={styles.navButtonText}><MoveRight/></Text>
+                <Text style={styles.navButtonText}><MoveRight color="black"/></Text>
               </TouchableOpacity>
             </View>
           )}

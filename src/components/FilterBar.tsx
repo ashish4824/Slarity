@@ -32,7 +32,7 @@ const FilterBar: React.FC<FilterBarProps> = ({
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.filterButton} onPress={onToggle}>
-        <Filter color="#2874f0" size={20} />
+        <Filter color="black" size={20} />
         <Text style={styles.filterButtonText}>Filters</Text>
       </TouchableOpacity>
 

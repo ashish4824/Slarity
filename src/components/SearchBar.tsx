@@ -42,7 +42,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
         returnKeyType="search"
       />
       <TouchableOpacity style={styles.searchButton} onPress={handleSearch}>
-        <Text style={styles.searchButtonText}><Search/></Text>
+        <Text style={styles.searchButtonText}><Search color="black"/></Text>
       </TouchableOpacity>
     </View>
   );

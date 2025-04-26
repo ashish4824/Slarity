@@ -82,7 +82,7 @@ const ProductListScreen = () => {
         onCartPress={handleCartPress}
         rightComponent={
           <TouchableOpacity style={styles.filterButton} onPress={toggleFilters}>
-            <Text style={styles.filterButtonText}><Filter/></Text>
+            <Text style={styles.filterButtonText}><Filter color="black"/></Text>
           </TouchableOpacity>
         }
       />

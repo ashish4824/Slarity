@@ -27,7 +27,7 @@ const Header: React.FC<HeaderProps> = ({
   const renderCartButton = () => {
     return (
       <TouchableOpacity style={styles.cartButton} onPress={onCartPress}>
-        <Text style={styles.cartIcon}><ShoppingCart/></Text>
+        <Text style={styles.cartIcon}><ShoppingCart color="white"/></Text>
         {cartItemCount > 0 && (
           <View style={styles.cartBadge}>
             <Text style={styles.cartBadgeText}>{cartItemCount}</Text>

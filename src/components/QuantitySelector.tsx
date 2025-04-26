@@ -24,7 +24,7 @@ const QuantitySelector: React.FC<QuantitySelectorProps> = ({
         onPress={onDecrease}
         disabled={quantity <= minValue}
       >
-        <Text style={styles.quantityButtonText}><Minus/></Text>
+        <Text style={styles.quantityButtonText}><Minus color="black"/></Text>
         
       </TouchableOpacity>
       
@@ -34,7 +34,7 @@ const QuantitySelector: React.FC<QuantitySelectorProps> = ({
         style={styles.quantityButton} 
         onPress={onIncrease}
       >
-        <Text style={styles.quantityButtonText}><Plus/></Text>
+        <Text style={styles.quantityButtonText}><Plus color="black"/></Text>
       </TouchableOpacity>
     </View>
   );

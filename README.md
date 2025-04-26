@@ -2,6 +2,10 @@
 
 A React Native e-commerce application built with Expo and TypeScript, using the Platzi Fake Store API.
 
+## 📽️ Demo Video
+
+[Watch the demo here](https://drive.google.com/file/d/1Qm_ANBPNVV_jTNP956teaETS1lyqyC7c/view?usp=drivesdk)
+
 ## Features
 
 - Product listing with search and filtering capabilities

@@ -43,16 +43,16 @@ const Header: React.FC<HeaderProps> = ({
         leftComponent
       ) : onBackPress ? (
         <TouchableOpacity onPress={onBackPress} style={styles.backButton}>
-          <Text style={styles.backButtonText}><MoveLeft/></Text>
+          {/* <Text style={styles.backButtonText}><MoveLeft/></Text> */}
         </TouchableOpacity>
       ) : (
         <View style={styles.placeholder} />
       )}
       
-      <View style={styles.centerContainer}>
-        {!showSearch && <Text style={styles.headerTitle}>{title}</Text>}
+      {/* <View style={styles.centerContainer}> */}
+        {/* {!showSearch && <Text style={styles.headerTitle}>{title}</Text>} */}
         {showSearch && <SearchBar onSearch={onSearch} />}
-      </View>
+      {/* </View> */}
       
       {rightComponent || renderCartButton()}
     </View>

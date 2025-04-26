@@ -11,12 +11,12 @@ export const fetchProducts = async (filter?: ProductFilter): Promise<Product[]> 
     if (filter?.categoryId) {
       queryParams.push(`categoryId=${filter.categoryId}`);
     }
-    if (filter?.minPrice) {
-      queryParams.push(`price_min=${filter.minPrice}`);
+    if (filter?.priceRange?.min) {
+      queryParams.push(`price_min=${filter.priceRange.min}`);
     }
     
-    if (filter?.maxPrice) {
-      queryParams.push(`price_max=${filter.maxPrice}`);
+    if (filter?.priceRange?.max && filter.priceRange.max !== Infinity) {
+      queryParams.push(`price_max=${filter.priceRange.max}`);
     }
     if (queryParams.length > 0) {
       url += `?${queryParams.join('&')}`;

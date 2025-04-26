@@ -23,7 +23,9 @@ export interface CartItem extends Product {
 export interface ProductFilter {
   search?: string;
   categoryId?: number;
-  minPrice?: number;
-  maxPrice?: number;
+  priceRange?: {
+    min: number;
+    max: number;
+  };
   sortBy?: 'price-asc' | 'price-desc' | 'name-asc' | 'name-desc';
 }

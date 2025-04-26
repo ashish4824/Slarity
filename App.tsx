@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { TailwindProvider } from 'tailwindcss-react-native';
 
 import ProductListScreen from './src/screens/ProductListScreen';
 import ProductDetailScreen from './src/screens/ProductDetailScreen';
@@ -26,41 +27,43 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 export default function App() {
   return (
     <SafeAreaProvider>
-      <QueryClientProvider client={queryClient}>
-        <CartProvider>
-          <NavigationContainer>
-            <Stack.Navigator 
-              initialRouteName="ProductList"
-              screenOptions={{
-                headerStyle: {
-                  backgroundColor: '#2874f0', 
-                },
-                headerTintColor: '#fff',
-                headerTitleStyle: {
-                  fontWeight: 'bold',
-                },
-              }}
-            >
-              <Stack.Screen 
-                name="ProductList" 
-                component={ProductListScreen} 
-                options={{ title: 'Flipkart' }} 
-              />
-              <Stack.Screen 
-                name="ProductDetail" 
-                component={ProductDetailScreen} 
-                options={{ title: 'Product Details' }} 
-              />
-              <Stack.Screen 
-                name="Cart" 
-                component={CartScreen} 
-                options={{ title: 'Shopping Cart' }} 
-              />
-            </Stack.Navigator>
-          </NavigationContainer>
-          <StatusBar style="auto" />
-        </CartProvider>
+      <TailwindProvider>
+        <QueryClientProvider client={queryClient}>
+          <CartProvider>
+            <NavigationContainer>
+              <Stack.Navigator 
+                initialRouteName="ProductList"
+                screenOptions={{
+                  headerStyle: {
+                    backgroundColor: '#2874f0', 
+                  },
+                  headerTintColor: '#fff',
+                  headerTitleStyle: {
+                    fontWeight: 'bold',
+                  },
+                }}
+              >
+                <Stack.Screen 
+                  name="ProductList" 
+                  component={ProductListScreen} 
+                  options={{ title: 'Flipkart' }} 
+                />
+                <Stack.Screen 
+                  name="ProductDetail" 
+                  component={ProductDetailScreen} 
+                  options={{ title: 'Product Details' }} 
+                />
+                <Stack.Screen 
+                  name="Cart" 
+                  component={CartScreen} 
+                  options={{ title: 'Shopping Cart' }} 
+                />
+              </Stack.Navigator>
+              <StatusBar style="auto" />
+            </NavigationContainer>
+          </CartProvider>
       </QueryClientProvider>
+      </TailwindProvider>
     </SafeAreaProvider>
   );
 }

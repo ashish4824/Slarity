@@ -4,13 +4,13 @@ import { useQuery } from '@tanstack/react-query';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Filter } from 'lucide-react-native';
 
 import { fetchProducts, fetchCategories } from '../api/api';
 import { Product, ProductFilter, Category } from '../types';
 import { RootStackParamList } from '../../App';
 import { useCart } from '../hooks/useCart';
-import { ProductCard, Header, Button } from '../components';
-import { Filter } from 'lucide-react-native';
+import { ProductCard, Header, Button, FilterBar } from '../components';
 
 type ProductListScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'ProductList'>;
 
@@ -21,6 +21,8 @@ const ProductListScreen = () => {
   const [filters, setFilters] = useState<ProductFilter>({
     search: '',
     sortBy: 'name-asc',
+    priceRange: undefined,
+    categoryId: undefined,
   });
   
   const [showFilters, setShowFilters] = useState(false);
@@ -58,6 +60,10 @@ const ProductListScreen = () => {
   const handleCategoryChange = (categoryId?: number) => {
     setFilters(prev => ({ ...prev, categoryId }));
   };
+
+  const handlePriceRangeChange = (range: { min: number; max: number }) => {
+    setFilters(prev => ({ ...prev, priceRange: range }));
+  };
   
   const renderProductItem = ({ item }: { item: Product }) => (
     <ProductCard 
@@ -81,50 +87,15 @@ const ProductListScreen = () => {
         }
       />
       
-      {showFilters && (
-        <View style={styles.filtersContainer}>
-          <Text style={styles.filterTitle}>Sort by:</Text>
-          <View style={styles.sortOptions}>
-            <TouchableOpacity 
-              style={[styles.sortOption, filters.sortBy === 'price-asc' && styles.activeSortOption]}
-              onPress={() => handleSortChange('price-asc')}
-            >
-              <Text>Price: Low to High</Text>
-            </TouchableOpacity>
-            <TouchableOpacity 
-              style={[styles.sortOption, filters.sortBy === 'price-desc' && styles.activeSortOption]}
-              onPress={() => handleSortChange('price-desc')}
-            >
-              <Text>Price: High to Low</Text>
-            </TouchableOpacity>
-            <TouchableOpacity 
-              style={[styles.sortOption, filters.sortBy === 'name-asc' && styles.activeSortOption]}
-              onPress={() => handleSortChange('name-asc')}
-            >
-              <Text>Name: A to Z</Text>
-            </TouchableOpacity>
-          </View>
-          
-          <Text style={styles.filterTitle}>Categories:</Text>
-          <View style={styles.categoryOptions}>
-            <TouchableOpacity 
-              style={[styles.categoryOption, !filters.categoryId && styles.activeCategoryOption]}
-              onPress={() => handleCategoryChange(undefined)}
-            >
-              <Text>All</Text>
-            </TouchableOpacity>
-            {categories?.map((category: Category) => (
-              <TouchableOpacity 
-                key={category.id}
-                style={[styles.categoryOption, filters.categoryId === category.id && styles.activeCategoryOption]}
-                onPress={() => handleCategoryChange(category.id)}
-              >
-                <Text>{category.name}</Text>
-              </TouchableOpacity>
-            ))}
-          </View>
-        </View>
-      )}
+      <FilterBar
+        filters={filters}
+        categories={categories || []}
+        onSortChange={handleSortChange}
+        onCategoryChange={handleCategoryChange}
+        onPriceRangeChange={handlePriceRangeChange}
+        visible={showFilters}
+        onToggle={toggleFilters}
+      />
       
       {isLoading ? (
         <View style={styles.centered}>
